@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>F1 Student Visa Interview Practice | IDP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Farro:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:     #003087;
+  --blue:     #0052CC;
+  --blue-mid: #0066FF;
+  --blue-lt:  #EBF2FF;
+  --blue-bd:  #C2D6F8;
+  --teal:     #00A4A6;
+  --bg:       #F4F6FB;
+  --white:    #FFFFFF;
+  --border:   #D8E0EE;
+  --text:     #1A2340;
+  --body:     #3D4A66;
+  --muted:    #7A8AAA;
+  --green:    #1BA05E;
+  --green-lt: #E8F8F1;
+  --red:      #D93B3B;
+  --red-lt:   #FDEAEA;
+  --orange:   #E07B00;
+  --orange-lt:#FFF3E0;
+  --shadow:   0 2px 12px rgba(0,48,135,0.08);
+  --shadow-lg:0 8px 32px rgba(0,48,135,0.12);
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 64px;
+}
+
+/* NAV */
+nav {
+  width: 100%; background: var(--navy);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px; position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.nav-logo {
+  font-family: 'Farro', sans-serif; font-weight: 700; font-size: 22px;
+  color: #fff; letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo span { color: var(--teal); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-btn {
+  background: transparent; border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.85); border-radius: 6px;
+  padding: 6px 14px; font-size: 13px; font-family: 'Inter', sans-serif;
+  cursor: pointer; transition: all 0.2s;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-btn.active { background: rgba(0,164,166,0.25); border-color: var(--teal); color: var(--teal); }
+
+/* HERO */
+.hero-band {
+  width: 100%; background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+  padding: 44px 20px 40px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero-band::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px; margin-bottom: 16px;
+}
+.hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: blink 2s infinite; display: inline-block; }
+.hero-band h1 {
+  font-family: 'Farro', sans-serif; font-weight: 700;
+  font-size: 36px; color: #fff; letter-spacing: -0.02em; margin-bottom: 12px;
+}
+.hero-band p { font-size: 15px; color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 24px; line-height: 1.65; }
+.hero-stats { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
+.hero-stat { text-align: center; }
+.hero-stat-num { font-family: 'Farro', sans-serif; font-size: 26px; font-weight: 700; color: #fff; }
+.hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 500; letter-spacing: 0.05em; margin-top: 2px; }
+
+/* CONTENT */
+.wrap { width: 100%; max-width: 760px; padding: 32px 20px 0; }
+
+/* CARD */
+.card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; width: 100%;
+  box-shadow: var(--shadow);
+}
+.card-head {
+  background: #F8FAFF; border-bottom: 1px solid var(--border);
+  padding: 12px 20px; display: flex; align-items: center; gap: 8px;
+}
+.card-head-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.card-head-label.blue { color: var(--blue); }
+.card-head-right { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); font-weight: 500; }
+.rec-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: blink 1s infinite; display: none; }
+
+/* START */
+#start-screen { padding: 52px 32px 40px; text-align: center; }
+.start-icon {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: var(--blue-lt); border: 3px solid var(--blue-bd);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; margin: 0 auto 28px;
+  cursor: pointer; transition: all 0.25s;
+  animation: btn-pulse 2.5s ease infinite;
+}
+.start-icon:hover { background: var(--blue); border-color: var(--blue); box-shadow: 0 8px 28px rgba(0,82,204,0.35); transform: scale(1.05); }
+.start-icon:hover .play-icon { filter: brightness(10); }
+.play-icon { font-size: 36px; margin-left: 4px; }
+#start-screen h2 { font-family: 'Farro', sans-serif; font-weight: 700; font-size: 24px; color: var(--text); margin-bottom: 10px; }
+#start-screen p { font-size: 14px; color: var(--body); max-width: 420px; margin: 0 auto 28px; line-height: 1.8; }
+.pill-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.pill { font-size: 12px; font-weight: 500; color: var(--blue); background: var(--blue-lt); border: 1px solid var(--blue-bd); padding: 5px 14px; border-radius: 20px; }
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--border); }
+.feat { padding: 22px 16px; text-align: center; border-right: 1px solid var(--border); }
+.feat:last-child { border-right: none; }
+.feat-icon { font-size: 26px; margin-bottom: 8px; }
+.feat-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.feat-desc { font-size: 12px; color: var(--muted); }
+
+/* TRANSCRIPT */
+#transcript {
+  min-height: 360px; max-height: 450px;
+  overflow-y: auto; padding: 24px 20px;
+  display: flex; flex-direction: column; gap: 20px;
+  background: #FAFBFF;
+}
+#transcript::-webkit-scrollbar { width: 4px; }
+#transcript::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.empty-msg { text-align: center; color: var(--muted); font-size: 14px; font-style: italic; margin: auto; }
+.msg { display: flex; gap: 12px; align-items: flex-start; animation: fadeUp 0.3s ease forwards; }
+.msg.applicant { flex-direction: row-reverse; }
+.avatar { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.avatar.officer { background: var(--blue-lt); border: 1px solid var(--blue-bd); border-radius: 8px; }
+.avatar.applicant { background: #E8F4FF; border: 1px solid #C2DCF8; border-radius: 50%; }
+.msg-body { max-width: 80%; }
+.msg-name { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+.msg-name.officer { color: var(--navy); }
+.msg-name.applicant { color: var(--blue); text-align: right; }
+.bubble { padding: 12px 16px; font-size: 15px; line-height: 1.65; }
+.bubble.officer { background: var(--white); border: 1px solid var(--border); color: var(--text); border-radius: 4px 12px 12px 12px; box-shadow: 0 1px 4px rgba(0,48,135,0.06); }
+.bubble.applicant { background: var(--blue); color: #fff; border-radius: 12px 4px 12px 12px; }
+.typing-row { display: flex; gap: 5px; align-items: center; padding: 13px 16px; }
+.tdot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite; }
+.tdot:nth-child(2){animation-delay:.2s}.tdot:nth-child(3){animation-delay:.4s}
+
+/* CONTROLS */
+#controls { padding: 14px 20px; background: #F8FAFF; border-top: 1px solid var(--border); }
+#live-preview { background: var(--blue-lt); border: 1px solid var(--blue-bd); border-radius: 8px; padding: 9px 13px; margin-bottom: 10px; font-size: 13px; color: var(--blue); font-style: italic; line-height: 1.5; display: none; }
+.ctrl-row { display: flex; gap: 10px; align-items: center; }
+.mic-btn {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid var(--blue-bd); background: var(--blue-lt);
+  cursor: pointer; font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.2s;
+}
+.mic-btn:hover:not(:disabled) { background: var(--blue); border-color: var(--blue); transform: scale(1.05); }
+.mic-btn.listening { background: var(--red-lt)!important; border-color: var(--red)!important; animation: pulse-ring 1.5s infinite; }
+.mic-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+#text-input {
+  flex: 1; background: var(--white); border: 1.5px solid var(--border);
+  color: var(--text); border-radius: 8px; padding: 11px 14px;
+  font-size: 14px; font-family: 'Inter', sans-serif; transition: border-color 0.2s;
+}
+#text-input::placeholder { color: var(--muted); }
+#text-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,82,204,0.1); }
+#text-input:disabled { background: #F4F6FB; opacity: 0.6; }
+.send-btn {
+  padding: 11px 22px; background: var(--blue); color: #fff;
+  border: none; border-radius: 8px; cursor: pointer;
+  font-size: 14px; font-family: 'Inter', sans-serif; font-weight: 600;
+  flex-shrink: 0; transition: all 0.2s;
+}
+.send-btn:hover:not(:disabled) { background: var(--navy); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,82,204,0.3); }
+.send-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+.ctrl-hint { font-size: 11px; color: var(--muted); text-align: center; margin-top: 8px; font-weight: 500; }
+
+/* FEEDBACK */
+#feedback-screen { display: flex; flex-direction: column; gap: 16px; }
+.loading-box { padding: 80px 40px; text-align: center; }
+.spinner { width: 44px; height: 44px; border: 3px solid var(--border); border-top-color: var(--blue); border-radius: 50%; margin: 0 auto 20px; animation: spin 1s linear infinite; }
+.loading-box p { font-size: 16px; color: var(--body); font-weight: 600; margin-bottom: 4px; }
+.loading-box small { font-size: 13px; color: var(--muted); }
+.score-area { padding: 32px 28px; display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+.score-wrap { flex-shrink: 0; text-align: center; }
+.score-lbl { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 0.1em; margin-top: 8px; text-transform: uppercase; }
+.verdict-badge { display: inline-block; padding: 6px 18px; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.feedback-summary { font-size: 15px; color: var(--body); line-height: 1.7; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.sec-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 18px; border-bottom: 1px solid var(--border); }
+.sec-list { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+.sec-item { display: flex; gap: 10px; font-size: 14px; line-height: 1.55; color: var(--body); }
+.sec-dot { flex-shrink: 0; margin-top: 3px; font-size: 8px; }
+.tip-num { width: 22px; height: 22px; border-radius: 50%; background: var(--blue-lt); border: 1.5px solid var(--blue-bd); color: var(--blue); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.retry-btn { width: 100%; padding: 15px; background: var(--blue); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; transition: all 0.2s; margin-top: 4px; }
+.retry-btn:hover { background: var(--navy); box-shadow: 0 4px 16px rgba(0,82,204,0.3); transform: translateY(-1px); }
+
+/* ERROR TOAST */
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #1A2340; color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; box-shadow: var(--shadow-lg); z-index: 200; animation: fadeUp 0.3s ease; display: none; }
+
+footer { margin-top: 48px; font-size: 12px; color: var(--muted); text-align: center; padding: 24px 20px 0; border-top: 1px solid var(--border); width: 100%; max-width: 760px; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes pulse-ring { 0%,100%{box-shadow:0 0 0 0 rgba(217,59,59,0.4)} 50%{box-shadow:0 0 0 12px rgba(217,59,59,0)} }
+@keyframes btn-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,82,204,0.2)} 50%{box-shadow:0 0 0 12px rgba(0,82,204,0)} }
+
+@media(max-width:540px){
+  .two-col{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:1fr}
+  .feat{border-right:none!important;border-bottom:1px solid var(--border)}
+  .feat:last-child{border-bottom:none}
+  .score-area{flex-direction:column;text-align:center}
+  #start-screen{padding:36px 20px 28px}
+  .hero-band h1{font-size:28px}
+  .hero-stats{gap:20px}
+  nav{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">IDP <span>·</span> F1 Visa Prep</div>
+  <div class="nav-right">
+    <button class="nav-btn active" id="tts-toggle">
+      <svg id="tts-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:5px"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>Voice On
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-band">
+  <div class="hero-tag"><span class="hero-dot"></span> US F1 Student Visa · AI Mock Interview</div>
+  <h1>Ace Your F1 Visa Interview</h1>
+  <p>Practice with a realistic AI consular officer trained on F1 student visa patterns. Get a full performance report with your score, strengths, and expert tips.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">8–10</div><div class="hero-stat-label">Real Questions</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">AI</div><div class="hero-stat-label">Scored Feedback</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">Free</div><div class="hero-stat-label">No Sign-up</div></div>
+  </div>
+</div>
+
+<!-- START -->
+<div class="wrap" id="start-wrap">
+  <div class="card" style="margin-top:0">
+    <div id="start-screen">
+      <div class="start-icon" id="start-btn"><span class="play-icon">▶</span></div>
+      <h2>Start Your F1 Mock Interview</h2>
+      <p>A strict AI consular officer will ask you 8–10 realistic F1 student visa questions — covering your university, program, funding, career plans, and ties to home. Answer naturally by speaking or typing.</p>
+      <div class="pill-row">
+        <span class="pill">Voice Input</span>
+        <span class="pill">AI Officer</span>
+        <span class="pill">Instant Score</span>
+        <span class="pill">Expert Tips</span>
+      </div>
+    </div>
+    <div class="feature-grid">
+      <div class="feat">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
+        </div>
+        <div class="feat-title">Speak or Type</div>
+        <div class="feat-desc">Use your mic or keyboard to answer</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M18 3l1.5 1.5M18 7h2M18 11l1.5-1.5"/></svg>
+        </div>
+        <div class="feat-title">AI Consular Officer</div>
+        <div class="feat-desc">Probes funding, ties and intent to return</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        </div>
+        <div class="feat-title">Full F1 Report</div>
+        <div class="feat-desc">Score, verdict, tips and risk flags</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTERVIEW -->
+<div class="wrap" id="interview-wrap" style="display:none">
+  <div class="card" style="margin-top:0">
+    <div class="card-head">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span class="card-head-label blue">Live Interview Session</span>
+      <div class="card-head-right">
+        <span id="q-counter">Question 1</span>
+        <span class="rec-dot" id="rec-dot"></span>
+      </div>
+    </div>
+    <div id="transcript">
+      <div class="empty-msg" id="empty-msg">Your interview is starting…</div>
+    </div>
+    <div id="controls">
+      <div id="live-preview"></div>
+      <div class="ctrl-row">
+        <button class="mic-btn" id="mic-btn">
+          <span id="mic-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
+          </span>
+        </button>
+        <input type="text" id="text-input" placeholder="Type your answer, or click the microphone to speak"/>
+        <button class="send-btn" id="send-btn" disabled>Submit</button>
+      </div>
+      <div class="ctrl-hint" id="ctrl-hint">Click the microphone to speak · Press Enter to submit</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEEDBACK -->
+<div class="wrap" id="feedback-wrap" style="display:none">
+  <div id="feedback-screen">
+    <div class="card" id="loading-card">
+      <div class="loading-box">
+        <div class="spinner"></div>
+        <p>Analysing your interview…</p>
+        <small>Generating your personalised report</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:0">
+  <footer>
+    For practice purposes only · Not affiliated with the US Department of State<br>
+    <span style="color:var(--blue);font-weight:600">IDP F1 Visa Prep</span> · Powered by Claude AI · © 2025
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// All API calls go to our own backend — no API key in browser
+async function callAPI(messages, type) {
+  const res = await fetch('/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages, type })
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error);
+  return data.text;
+}
+
+let ttsOn = true, msgs = [], listening = false, pendingTxt = '', liveTxt = '', rec = null, qNum = 0;
+
+const $ = id => document.getElementById(id);
+const startWrap=$('start-wrap'), ivWrap=$('interview-wrap'), fbWrap=$('feedback-wrap');
+const tx=$('transcript'), emptyMsg=$('empty-msg'), livePreview=$('live-preview');
+const micBtn=$('mic-btn'), micIcon=$('mic-icon'), txtInp=$('text-input'), sendBtn=$('send-btn');
+const ctrlHint=$('ctrl-hint'), qCounter=$('q-counter'), recDot=$('rec-dot');
+const fbScreen=$('feedback-screen'), toast=$('toast');
+
+$('tts-toggle').onclick = function(){
+  ttsOn=!ttsOn;
+  const svgOn = `<svg id="tts-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:5px"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>Voice On`;
+  const svgOff = `<svg id="tts-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:5px"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>Voice Off`;
+  this.innerHTML = ttsOn ? svgOn : svgOff;
+  this.classList.toggle('active', ttsOn);
+  if(!ttsOn) speechSynthesis.cancel();
+};
+$('start-btn').onclick = startInterview;
+micBtn.onclick = () => listening ? stopRec() : startRec();
+sendBtn.onclick = doSend;
+txtInp.onkeydown = e => { if(e.key==='Enter') doSend(); };
+txtInp.oninput = updateBtn;
+
+function showToast(msg, duration=4000) {
+  toast.textContent = msg; toast.style.display = 'block';
+  setTimeout(() => { toast.style.display = 'none'; }, duration);
+}
+
+async function startInterview(){
+  msgs=[]; qNum=0; showScreen('interview');
+  tx.innerHTML=''; emptyMsg.style.display='block';
+  setEnabled(false);
+  try {
+    const reply = await callAPI([{role:'user',content:'Begin the interview.'}], 'interview');
+    emptyMsg.style.display='none';
+    addMsg('officer', reply); speak(reply); setEnabled(true); txtInp.focus();
+  } catch(e) {
+    showScreen('start');
+    showToast('⚠ Could not connect. Please try again.');
+  }
+}
+
+function buildMsgs(m){
+  const a=[{role:'user',content:'Begin the interview.'}];
+  for(const x of m) a.push({role:x.role==='officer'?'assistant':'user',content:x.text});
+  return a;
+}
+
+async function submitAnswer(text){
+  if(!text.trim()) return;
+  speechSynthesis.cancel(); setEnabled(false);
+  pendingTxt=''; liveTxt=''; txtInp.value=''; livePreview.style.display='none'; updateBtn();
+  msgs=[...msgs,{role:'applicant',text:text.trim()}];
+  addMsg('applicant', text.trim()); showTyping();
+  try {
+    const reply = await callAPI(buildMsgs(msgs), 'interview');
+    hideTyping();
+    const done = reply.includes('INTERVIEW_COMPLETE');
+    const clean = reply.replace('INTERVIEW_COMPLETE','').trim();
+    msgs=[...msgs,{role:'officer',text:clean}];
+    addMsg('officer', clean); speak(clean);
+    qNum++; qCounter.textContent = 'Question '+(qNum+1);
+    if(done){ setEnabled(false); setTimeout(getFeedback, 2500); }
+    else{ setEnabled(true); txtInp.focus(); }
+  } catch(e) {
+    hideTyping(); setEnabled(true);
+    showToast('Error getting response. Please try again.');
+  }
+}
+
+async function getFeedback(){
+  showScreen('feedback');
+  const transcript = msgs.map(m=>`${m.role==='officer'?'Officer':'Applicant'}: ${m.text}`).join('\n');
+  try {
+    const raw = await callAPI([{role:'user',content:'Transcript:\n\n'+transcript+'\n\nReturn JSON only.'}], 'feedback');
+    renderFeedback(JSON.parse(raw.replace(/```json|```/g,'').trim()));
+  } catch(e) {
+    renderFeedback({verdict:'BORDERLINE',score:50,summary:'Your interview was completed. Please try again for a detailed report.',strengths:[],weaknesses:[],tips:['Practice answering concisely','Prepare your travel documents','Know your itinerary well'],risk_factors:[]});
+  }
+}
+
+function speak(text){
+  if(!ttsOn) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text.replace('INTERVIEW_COMPLETE','').trim());
+  u.rate=0.93; u.pitch=0.88; u.volume=0.9;
+  const vs = speechSynthesis.getVoices();
+  u.voice = vs.find(v=>v.lang==='en-US'&&(v.name.includes('Daniel')||v.name.includes('David')||v.name.includes('Alex')))
+    || vs.find(v=>v.lang.startsWith('en-US')) || vs[0];
+  speechSynthesis.speak(u);
+}
+speechSynthesis.onvoiceschanged=()=>{};
+
+function startRec(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){ showToast('Speech recognition requires Chrome. Please type your answer.'); return; }
+  speechSynthesis.cancel();
+  rec=new SR(); rec.continuous=true; rec.interimResults=true; rec.lang='en-US';
+  let fin='';
+  rec.onresult=e=>{
+    let intr='';
+    for(const r of e.results){ if(r.isFinal) fin+=r[0].transcript+' '; else intr+=r[0].transcript; }
+    pendingTxt=fin; liveTxt=intr;
+    const c=(fin+intr).trim();
+    if(c){livePreview.textContent='"'+c+'"'; livePreview.style.display='block';}
+    updateBtn();
+  };
+  rec.onend=()=>setRecState(false); rec.onerror=()=>setRecState(false);
+  rec.start(); setRecState(true);
+}
+function stopRec(){ if(rec)rec.stop(); setRecState(false); }
+function setRecState(on){
+  listening=on; micBtn.classList.toggle('listening',on);
+  micIcon.innerHTML=on
+    ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>`
+    : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>`;
+  recDot.style.display=on?'block':'none';
+  ctrlHint.textContent=on?'Recording — click to stop, then Submit':'Click the microphone to speak · Press Enter to submit';
+  txtInp.placeholder=on?'Listening… (or type to override)':'Type your answer, or click the microphone to speak';
+  updateBtn();
+}
+function doSend(){ if(listening)stopRec(); const t=(txtInp.value||pendingTxt+liveTxt).trim(); if(t)submitAnswer(t); }
+function updateBtn(){ sendBtn.disabled=!(txtInp.value.trim()||pendingTxt.trim()||liveTxt.trim()); }
+function setEnabled(on){ micBtn.disabled=!on; txtInp.disabled=!on; if(!on)sendBtn.disabled=true; else updateBtn(); }
+function showScreen(n){ startWrap.style.display=n==='start'?'block':'none'; ivWrap.style.display=n==='interview'?'block':'none'; fbWrap.style.display=n==='feedback'?'block':'none'; }
+
+function showTyping(){
+  if(typingEl)return;
+  typingEl=document.createElement('div'); typingEl.className='msg';
+  typingEl.innerHTML=`<div class="avatar officer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div class="msg-body"><div class="msg-name officer">Consular Officer</div><div class="bubble officer"><div class="typing-row"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div></div></div>`;
+  tx.appendChild(typingEl); tx.scrollTop=tx.scrollHeight;
+}
+function hideTyping(){ if(typingEl){typingEl.remove();typingEl=null;} }
+function addMsg(role,text){
+  const d=document.createElement('div'); d.className='msg '+role;
+  const avatarSvg = role==='officer'
+    ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`
+    : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`;
+  d.innerHTML=`<div class="avatar ${role}">${avatarSvg}</div><div class="msg-body"><div class="msg-name ${role}">${role==='officer'?'Consular Officer':'You'}</div><div class="bubble ${role}">${esc(text)}</div></div>`;
+  tx.appendChild(d); tx.scrollTop=tx.scrollHeight;
+}
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function vc(v){ return v==='LIKELY APPROVED'?'var(--green)':v==='BORDERLINE'?'var(--orange)':'var(--red)'; }
+function vbg(v){ return v==='LIKELY APPROVED'?'var(--green-lt)':v==='BORDERLINE'?'var(--orange-lt)':'var(--red-lt)'; }
+function vi(v){ return v==='LIKELY APPROVED'?'✓ ':v==='BORDERLINE'?'△ ':'✗ '; }
+
+function renderFeedback(fb){
+  const c=vc(fb.verdict), bg=vbg(fb.verdict), circ=2*Math.PI*40, off=circ-(circ*fb.score/100);
+  fbScreen.innerHTML=`
+  <div class="card">
+    <div class="card-head">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      <span class="card-head-label blue">Your Assessment Report</span>
+    </div>
+    <div class="score-area">
+      <div class="score-wrap">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="var(--border)" stroke-width="8"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="${c}" stroke-width="8" stroke-linecap="round"
+            stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}"
+            transform="rotate(-90 50 50)" style="transition:stroke-dashoffset 1.4s ease"/>
+          <text x="50" y="46" text-anchor="middle" fill="var(--text)" font-size="22" font-family="Farro,sans-serif" font-weight="700">${fb.score}</text>
+          <text x="50" y="61" text-anchor="middle" fill="var(--muted)" font-size="10" font-family="Inter,sans-serif">/100</text>
+        </svg>
+        <div class="score-lbl">Overall Score</div>
+      </div>
+      <div style="flex:1">
+        <div class="verdict-badge" style="background:${bg};color:${c};border:1.5px solid ${c}55">${vi(fb.verdict)}${esc(fb.verdict)}</div>
+        <p class="feedback-summary">${esc(fb.summary)}</p>
+      </div>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="sec-title" style="color:var(--green)">✓ Strengths</div>
+      <div class="sec-list">${(fb.strengths||[]).length?fb.strengths.map(s=>`<div class="sec-item"><span class="sec-dot" style="color:var(--green)">●</span>${esc(s)}</div>`).join(''):'<div style="font-size:13px;color:var(--muted)">None identified</div>'}</div>
+    </div>
+    <div class="card">
+      <div class="sec-title" style="color:var(--red)">✗ Weaknesses</div>
+      <div class="sec-list">${(fb.weaknesses||[]).length?fb.weaknesses.map(w=>`<div class="sec-item"><span class="sec-dot" style="color:var(--red)">●</span>${esc(w)}</div>`).join(''):'<div style="font-size:13px;color:var(--muted)">None identified</div>'}</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="sec-title" style="color:var(--blue)">Improvement Tips</div>
+    <div class="sec-list">${(fb.tips||[]).map((t,i)=>`<div class="sec-item"><span class="tip-num">${i+1}</span>${esc(t)}</div>`).join('')}</div>
+  </div>
+  ${(fb.risk_factors||[]).length?`<div class="card" style="border-color:rgba(224,123,0,0.4)"><div class="sec-title" style="color:var(--orange)">Risk Factors</div><div class="sec-list">${fb.risk_factors.map(r=>`<div class="sec-item"><span class="sec-dot" style="color:var(--orange)">▲</span>${esc(r)}</div>`).join('')}</div></div>`:''}
+  <button class="retry-btn" onclick="retry()">Practice Again</button>`;
+  $('loading-card').remove();
+}
+function retry(){ msgs=[]; qNum=0; fbScreen.innerHTML=`<div class="card" id="loading-card"><div class="loading-box"><div class="spinner"></div><p>Analysing your interview…</p><small>Generating your personalised report</small></div></div>`; showScreen('start'); }
+</script>
+</body>
+</html>
